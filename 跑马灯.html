@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>跑马灯</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding:0;
+            font-size:14px;
+        }
+        #box{
+          width:800px;
+            margin:50px auto;
+            padding:0 10px;
+            height:35px;
+            line-height:35px;
+            border:1px solid green;
+            background:greenyellow;
+        }
+        #wrap {
+            height:35px;
+            overflow:hidden;
+            white-space:nowrap;
+
+        }
+        #wrap span{
+            color:#d11111;
+            font-weight:bold;
+            font-size:16px;
+        }
+       #wrap div{
+            display:inline-block;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="wrap">
+    <div id="conBegin">
+        <span>通知</span>
+        开始放大看房间打开房间卡时间开始建立1看风景奥卡福就爱开
+        房间爱客服即可的开放接口的功能都是咖啡的咖啡你上课呢法芙娜
+    </div>
+        <div id="conEnd">
+            <span>通知</span>
+            开始放大看房间打开房间卡时间开始建立1看风景奥卡福就爱开
+            房间爱客服即可的开放接口的功能都是咖啡的咖啡你上课呢法芙娜
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var box=document.getElementById("box");
+    var wrap=document.getElementById("wrap");
+    var conBegin=document.getElementById("conBegin");
+    var conEnd=document.getElementById("conEnd");
+    var conBegin_width=window.getComputedStyle(conBegin,null).width;
+    console.log(conBegin_width);
+    var timer=window.setInterval(function(){
+      wrap.scrollLeft++;
+      var curLeft=wrap.scrollLeft;
+        if(curLeft>=parseInt(conBegin_width)){
+            wrap.scrollLeft=0;
+
+        }
+    },10);
+</script>
+</body>
+</html>
