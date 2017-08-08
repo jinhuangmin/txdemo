@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery多级菜单</title>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+            font-size: 14px;
+        }
+        ul li{
+            list-style: none;
+        }
+        .box{
+            margin:10px;
+            padding:10px;
+            width:300px;
+            border:1px dashed #008000;
+            background:#ffe470;
+            background:-webkit-linear-gradient(top left,#2b93d2,#fa5889,#cdE074,#ffe470 );
+            background:-o-linear-gradient(top left,#2b93d2,#fa5889,#cdE074,#ffe470 );
+            background:-moz-linear-gradient(top left,#2b93d2,#fa5889,#cdE074,#ffe470 );
+        }
+        .box li{
+            position:relative;
+            line-height:30px;
+
+        }
+        .box span{
+            display: block;
+            padding-left:20px;
+        }
+        .box em{
+            position:absolute;
+            width:16px;
+            height:16px;
+            background:#e4393c;
+            top:7px;
+            left:0;:
+        cursor:pointer;
+        }
+        .box em.open{
+            background:#000;
+        }
+        .box .two{
+            margin-left:20px;
+        }
+        .box .three{
+            margin-left:40px;
+        }
+        .box .four{
+            margin-left:60px;
+        }
+        .box .two,.box .three,.box .four{
+
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="box">
+    <ul>
+        <li>
+            <em class="open"></em> <span>第一级第一个</span>
+            <ul class="two">
+                <li>
+                    <span>第2级第一个</span>
+                </li>
+                <li>
+                    <em></em><span>第2级第2个</span>
+                    <ul class="three">
+                        <li>
+                            <span>第3级第一个</span>
+                        </li>
+                        <li>
+                            <span>第3级第2个</span>
+                        </li>
+                        <li>
+                            <em></em> <span>第3级第3个</span>
+                            <ul class="four">
+                                <li><span>第四级第一个</span></li>
+                                <li><span>第四级第2个</span></li>
+                                <li><span>第四级第3个</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <em></em><span>第2级第3个</span>
+                    <ul>
+                        <li>
+                            <span>第3级第一个</span>
+                        </li>
+                        <li>
+                            <span>第3级第2个</span>
+                        </li>
+                        <li>
+                            <span>第3级第3个</span>
+
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script type="text/javascript">
+ var $box=$("#box");
+ $box.find("span").each(function(){
+    var $pre=$(this).prev();
+    if($pre[0]&&$pre[0].tagName.toLowerCase()==='em'){
+        $(this).css("cursor","pointer");
+    }
+ });
+function fn(){
+  var $par=$(this).parent();
+  var $ul=$($par.children("ul")[0]);
+  var $em=$($par.children("em")[0]);
+  if($ul.length>0){
+      var isBlock=$ul.css("display")==="block"?true:false;
+      $ul.slideToggle();
+
+      if(isBlock){
+          $par.find("ul").css("display","none");
+      }
+  }
+}
+$box.delegate("em","click",fn);
+ $box.delegate("span","click",fn);
+</script>
+</body>
+</html>
